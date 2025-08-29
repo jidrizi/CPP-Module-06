@@ -6,7 +6,7 @@
 /*   By: jidrizi <jidrizi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:01:48 by jidrizi           #+#    #+#             */
-/*   Updated: 2025/08/29 14:02:05 by jidrizi          ###   ########.fr       */
+/*   Updated: 2025/08/29 18:10:35 by jidrizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 # include <string>
 # include <iostream>
+# include <cctype>
+# include <sstream>
 
 class ScalarConverter
 {
@@ -37,7 +39,10 @@ class ScalarConverter
 		static void			convert(std::string litString);
 	};
 
-// int							parseString(std::string litString);
-void						detectAndConvertChar(std::string litString);
+// int						parseString(std::string litString);
+// void						printResult(char charLit, int intLIt, float floatLit, doubel doubleLit);
+void						handleChar(std::string litString);
+void						handleInt(std::string litString);
+void						handleDouble(std::string litString);
 
 #endif
