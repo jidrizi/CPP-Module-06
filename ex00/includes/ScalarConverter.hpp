@@ -6,12 +6,20 @@
 /*   By: jidrizi <jidrizi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:01:48 by jidrizi           #+#    #+#             */
-/*   Updated: 2025/08/29 13:26:32 by jidrizi          ###   ########.fr       */
+/*   Updated: 2025/08/29 14:02:05 by jidrizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCALARCONVERTER_HPP
 # define SCALARCONVERTER_HPP
+
+# ifndef EXIT_SUCCESS
+#  define EXIT_SUCCESS 0
+# endif
+
+# ifndef EXIT_FAILURE
+#  define EXIT_FAILURE 1
+# endif
 
 # include <string>
 # include <iostream>
@@ -27,6 +35,9 @@ class ScalarConverter
 		~ScalarConverter();
 
 		static void			convert(std::string litString);
-};
+	};
+
+// int							parseString(std::string litString);
+void						detectAndConvertChar(std::string litString);
 
 #endif
