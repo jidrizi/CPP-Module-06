@@ -6,7 +6,7 @@
 /*   By: jidrizi <jidrizi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:01:48 by jidrizi           #+#    #+#             */
-/*   Updated: 2025/08/29 18:10:35 by jidrizi          ###   ########.fr       */
+/*   Updated: 2025/08/29 19:22:13 by jidrizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ class ScalarConverter
 // void						printResult(char charLit, int intLIt, float floatLit, doubel doubleLit);
 void						handleChar(std::string litString);
 void						handleInt(std::string litString);
+void						handleFloat(std::string litString);
 void						handleDouble(std::string litString);
 
 #endif

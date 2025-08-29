@@ -6,7 +6,7 @@
 /*   By: jidrizi <jidrizi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:52:02 by jidrizi           #+#    #+#             */
-/*   Updated: 2025/08/29 18:18:16 by jidrizi          ###   ########.fr       */
+/*   Updated: 2025/08/29 19:21:56 by jidrizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ScalarConverter::convert(std::string litString)
 	}
 	handleChar(litString);
 	handleInt(litString);
+	handleFloat(litString);
 	handleDouble(litString);
 	std::cout << "}" << std::endl;
 }
@@ -114,10 +115,9 @@ void	handleFloat(std::string litString)
 	int		dot = 0;
 
 	if (litString[litString.length() - 1] != 'f')
-		return ;
 	for (size_t len = litString.length() - 2; len != 0; len--)
 	{
-		else if (len != 0 && len != litString.length() - 2 
+		if (len != 0 && len != litString.length() - 2 
 				&& litString[len] == '.')
 			dot++;
 		else if (std::isdigit(litString[len]) == false || dot > 1)
@@ -127,7 +127,16 @@ void	handleFloat(std::string litString)
 	}
 	if (dot != 1)
 		return ;
-	
+
+	litString.resize(litString.length() - 1);
+	std::stringstream(litString) >> floatLit;
+	charLit = static_cast<char>(floatLit);
+	std::cout << "char: " << charLit << std::endl;
+	intLit = static_cast<int>(floatLit);
+	std::cout << "int: " << intLit << std::endl;
+	std::cout << "float: " << floatLit << std::endl;
+	doubleLit = static_cast<double>(floatLit);
+	std::cout << "double: " << doubleLit << std::endl;
 }
 
 
