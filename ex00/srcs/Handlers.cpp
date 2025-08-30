@@ -6,22 +6,37 @@
 /*   By: jidrizi <jidrizi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 12:13:06 by jidrizi           #+#    #+#             */
-/*   Updated: 2025/08/30 12:20:59 by jidrizi          ###   ########.fr       */
+/*   Updated: 2025/08/30 12:54:16 by jidrizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Handlers.hpp"
 
-void	printResult(char charLit, int intLit, float floatLit, double doubleLit)
+void	printResult(char charLit, int intLit, float floatLit, double doubleLit
+						, bool dotlessVariable)
 {
 	if (isprint(charLit))
 		std :: cout << "char:" << charLit << std::endl;
 	else
 		std:: cout << "char: " << "Non displayable" << std::endl;
 	std::cout << "int: " << intLit << std::endl;
-	std::cout << "float: " << floatLit << std::endl;
-	std::cout << "double: " << doubleLit << std::endl;
+	if (dotlessVariable)
+	{
+		std::cout << "float: " << floatLit << ".0" << "f" << std::endl;
+		std::cout << "double: " << doubleLit << ".0" << std::endl;
+	}
+	else
+	{
+		std::cout << "float: " << floatLit << "0"<< "f" << std::endl;
+		std::cout << "float: " << floatLit << "0" << std::endl;
+	}
 }
+
+// void		handlePseudo(std::string litString)
+// {
+	
+// }
+
 
 void	handleChar(std::string litString)
 {
@@ -30,8 +45,8 @@ void	handleChar(std::string litString)
 	if (litString[1] || std::isalpha(litString[0]) == false)
 		return ;
 	charLit = litString[0];
-	printResult(charLit, static_cast<int>(charLit), 
-					static_cast<float>(charLit), static_cast<double>(charLit));
+	printResult(charLit, static_cast<int>(charLit), static_cast<float>(charLit)
+					, static_cast<double>(charLit), true);
 }
 
 void	handleInt(std::string litString)
@@ -51,8 +66,8 @@ void	handleInt(std::string litString)
 		return ;
 
 	std::stringstream(litString) >> intLit;
-	printResult(static_cast<char>(intLit), intLit, 
-					static_cast<float>(intLit), static_cast<double>(intLit));
+	printResult(static_cast<char>(intLit), intLit, static_cast<float>(intLit)
+					, static_cast<double>(intLit), true);
 }
 
 
@@ -79,7 +94,7 @@ void	handleFloat(std::string litString)
 	litString.resize(litString.length() - 1);
 	std::stringstream(litString) >> floatLit;
 	printResult(static_cast<char>(floatLit), static_cast<int>(floatLit)
-					, floatLit, static_cast<double>(floatLit));
+					, floatLit, static_cast<double>(floatLit), false);
 }
 
 
@@ -87,6 +102,7 @@ void	handleDouble(std::string litString)
 {
 	double	doubleLit;
 	int		dot = 0;
+
 
 	for (size_t len = litString.length() - 1; len != 0; len--)
 	{
@@ -101,7 +117,8 @@ void	handleDouble(std::string litString)
 	if (dot != 1)
 		return ;
 
+
 	std::stringstream(litString) >> doubleLit;
 	printResult(static_cast<char>(doubleLit), static_cast<int>(doubleLit)
-					, static_cast<float>(doubleLit), doubleLit);
+					, static_cast<float>(doubleLit), doubleLit, false);
 }
