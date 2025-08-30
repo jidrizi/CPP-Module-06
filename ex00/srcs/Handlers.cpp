@@ -6,7 +6,7 @@
 /*   By: jidrizi <jidrizi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 12:13:06 by jidrizi           #+#    #+#             */
-/*   Updated: 2025/08/30 12:54:16 by jidrizi          ###   ########.fr       */
+/*   Updated: 2025/08/30 12:58:02 by jidrizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	handleInt(std::string litString)
 void	handleFloat(std::string litString)
 {
 	float	floatLit;
+	bool	edgeCase = false;
 	int		dot = 0;
 
 	if (litString[litString.length() - 1] != 'f')
@@ -90,17 +91,21 @@ void	handleFloat(std::string litString)
 	}
 	if (dot != 1)
 		return ;
+	if (litString[litString.length() - 2] == '.' 
+			&& litString[litString.length() - 1] == '0')
+		edgeCase = true;
 
 	litString.resize(litString.length() - 1);
 	std::stringstream(litString) >> floatLit;
 	printResult(static_cast<char>(floatLit), static_cast<int>(floatLit)
-					, floatLit, static_cast<double>(floatLit), false);
+					, floatLit, static_cast<double>(floatLit), edgeCase);
 }
 
 
 void	handleDouble(std::string litString)
 {
 	double	doubleLit;
+	bool	edgeCase = false;
 	int		dot = 0;
 
 
@@ -116,9 +121,11 @@ void	handleDouble(std::string litString)
 	}
 	if (dot != 1)
 		return ;
-
+	if (litString[litString.length() - 2] == '.' 
+			&& litString[litString.length() - 1] == '0')
+		edgeCase = true;
 
 	std::stringstream(litString) >> doubleLit;
 	printResult(static_cast<char>(doubleLit), static_cast<int>(doubleLit)
-					, static_cast<float>(doubleLit), doubleLit, false);
+					, static_cast<float>(doubleLit), doubleLit, edgeCase);
 }
