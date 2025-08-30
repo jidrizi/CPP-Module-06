@@ -8,7 +8,7 @@ all: $(NAME)
 
 SRCDIR = srcs/
 
-SRCS = $(SRCDIR)main.cpp $(SRCDIR)ScalarConverter.cpp
+SRCS = $(SRCDIR)main.cpp $(SRCDIR)ScalarConverter.cpp $(SRCDIR)Handlers.cpp
 
 BIN_DIR = bin
 
