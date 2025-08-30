@@ -6,11 +6,13 @@
 /*   By: jidrizi <jidrizi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 12:13:06 by jidrizi           #+#    #+#             */
-/*   Updated: 2025/08/30 12:58:02 by jidrizi          ###   ########.fr       */
+/*   Updated: 2025/08/30 15:40:06 by jidrizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Handlers.hpp"
+
+
 
 void	printResult(char charLit, int intLit, float floatLit, double doubleLit
 						, bool dotlessVariable)
@@ -27,15 +29,44 @@ void	printResult(char charLit, int intLit, float floatLit, double doubleLit
 	}
 	else
 	{
-		std::cout << "float: " << floatLit << "0"<< "f" << std::endl;
-		std::cout << "float: " << floatLit << "0" << std::endl;
+		std::cout << "float: " << floatLit << "f" << std::endl;
+		std::cout << "double: " << doubleLit  << std::endl;
 	}
 }
 
-// void		handlePseudo(std::string litString)
-// {
-	
-// }
+bool	edgeCaseCheck(std::string litString)
+{
+	int len = 0;
+
+	while (litString[len] && litString[len] != '.')
+		len++;
+	len++;
+	while (litString[len] && litString[len] == '0')
+		len++;
+	if (litString[len] == '\0' || litString[len] == 'f')
+		return (true);
+	return (false);
+}
+
+void		handlePseudo(std::string litString)
+{
+	if (litString.compare("nan") == 0 || litString.compare("nanf") == 0)
+	{
+		std::cout << "char: impossible\n" << "int: impossible\n" <<
+						"float: nanf\n" << "double: nan\n";
+
+	}
+	if (litString.compare("-inf") == 0 || litString.compare("-inff") == 0)
+	{
+		std::cout << "char: impossible\n" << "int: impossible\n" << 
+						"float: -inff\n" << 	"double: -inf\n";
+	}
+	if (litString.compare("+inf") == 0 || litString.compare("+inff") == 0)
+	{
+		std::cout << "char: impossible\n" << "int: impossible\n" << 
+						"float: +inff\n" << 	"double: +inf\n";
+	}
+}
 
 
 void	handleChar(std::string litString)
@@ -91,9 +122,8 @@ void	handleFloat(std::string litString)
 	}
 	if (dot != 1)
 		return ;
-	if (litString[litString.length() - 2] == '.' 
-			&& litString[litString.length() - 1] == '0')
-		edgeCase = true;
+	edgeCase = edgeCaseCheck(litString);
+
 
 	litString.resize(litString.length() - 1);
 	std::stringstream(litString) >> floatLit;
@@ -108,7 +138,6 @@ void	handleDouble(std::string litString)
 	bool	edgeCase = false;
 	int		dot = 0;
 
-
 	for (size_t len = litString.length() - 1; len != 0; len--)
 	{
 		if (len != 0 && len != litString.length() - 1  
@@ -121,10 +150,8 @@ void	handleDouble(std::string litString)
 	}
 	if (dot != 1)
 		return ;
-	if (litString[litString.length() - 2] == '.' 
-			&& litString[litString.length() - 1] == '0')
-		edgeCase = true;
-
+	edgeCase = edgeCaseCheck(litString);
+		
 	std::stringstream(litString) >> doubleLit;
 	printResult(static_cast<char>(doubleLit), static_cast<int>(doubleLit)
 					, static_cast<float>(doubleLit), doubleLit, edgeCase);

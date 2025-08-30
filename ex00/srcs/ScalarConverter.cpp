@@ -6,7 +6,7 @@
 /*   By: jidrizi <jidrizi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:52:02 by jidrizi           #+#    #+#             */
-/*   Updated: 2025/08/30 12:30:27 by jidrizi          ###   ########.fr       */
+/*   Updated: 2025/08/30 15:39:13 by jidrizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ScalarConverter::convert(std::string litString)
 		return ;
 	}
 
-	// handlePseudo(std::string litString);
+	handlePseudo(litString);
 	handleChar(litString);
 	handleInt(litString);
 	handleFloat(litString);
